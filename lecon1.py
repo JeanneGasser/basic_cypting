@@ -28,8 +28,6 @@ class EncryptDecrypt:
         to_decrypt =   [word.split("-") for word in text.split(" ")]
         return " ".join([("".join([chr(int(l)+96) for l in word])) for word in to_decrypt])
 
-EncryptDecrypt().encrypt(" this is a test")
-EncryptDecrypt().decrypt()
 #A FAIRE: Unidecode pour retirer les accents de raw input
 what_to_do = input("Voulez vous décrypter ou encrypter \n \n")
 
