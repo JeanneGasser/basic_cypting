@@ -1,2 +1,0 @@
-pip unidecode
-pip nltk
