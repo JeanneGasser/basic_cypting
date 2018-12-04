@@ -21,10 +21,18 @@ class EncryptDecryptRotx:
     def char_encrypt(self,char):
         #Get the letter position from the ascii code, then rotate to the new wanted letter
         #%26=> If we move past 26 by adding our new rotation, keep the result between 1-26
-        return chr((ord(char)-96 +self.rotation)%26+96)
+        #First calculate the new letter position: 
+        new_letter_pos = (ord(char)-96 + self.rotation)%26
+        #/!\Issue when new_letter_pos = 0 => should give 1 not 0
+        #Workaround: 
+        if new_letter_pos !=0:
+            return chr(new_letter_pos + 96)
+        else:
+            return chr(new_letter_pos + 96 + 1)
         
     def encrypt(self, text):
         
+        #Text Cleaning
         text = unidecode.unidecode(text.lower().strip())
         
         token = toknizer.tokenize(text)
@@ -35,7 +43,7 @@ class EncryptDecryptRotx:
     
     
     
-    
+#User interface
 print("Lancement du programme...")
 
 print("Si vous souhaitez décrypter un texte, entrez juste la valeur de rotation en négatif")
@@ -45,3 +53,5 @@ try:
     print(EncryptDecryptRotx(int(rotation)).encrypt(text))
 except ValueError:
     print("ERREUR ! \n Entrez un nombre valide comme rotation svp")
+    
+
